@@ -5,9 +5,9 @@ public class Program {
 
         window.setVisible(true);
 
-        window.setSize(960,720);
 
-        
+
+
 
 
     }
