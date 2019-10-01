@@ -39,7 +39,6 @@ public class MainWindow extends JFrame {
         titleLabel.setFont(new Font("Verdana",Font.PLAIN,24));
 
         add(topPanel);
-
         topPanel.add(titleLabel);
 
         ContentPanel contentPanel = new ContentPanel();

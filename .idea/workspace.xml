@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="MainWindow class updated">
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/MainWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/MainWindow.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569931270309</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="MainWindow class updated">
+      <created>1569951381323</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1569951381323</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -12,5 +12,9 @@ public class ContentPanel extends JPanel {
         setLayout(contentLayout);
         setBackground(new Color(255, 255, 255));
 
+        //Beans
+
+
+
     }
 }
