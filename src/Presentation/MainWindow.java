@@ -12,7 +12,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Global size and bounds of the frame
-        setBounds(250, 100, 800, 600);
+        setBounds(250, 100, 800, 720);
 
         // Exclusion on resizable features
         setResizable(false);
