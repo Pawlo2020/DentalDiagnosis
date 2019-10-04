@@ -152,10 +152,6 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
                     g2.drawImage(finalTooth, (int) _upperJaw.getToothList().get(i).body.getX(), (int) _upperJaw.getToothList().get(i).body.getY(), null);
                 }
         }
-
-        JLabel lab = new JLabel("asdasd");
-
-        add(lab);
     }
 
 
@@ -180,19 +176,13 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
                 if(_upperJaw.getToothList().get(i).body.contains(e.getPoint())){
                     System.out.println(_upperJaw.getToothList().get(i).getSide() + " " + _upperJaw.getToothList().get(i).get_type());
                 }
-
             }
-
         }else{
             for(int i=0; i<_downJaw.getToothList().size();i++){
                 if(_downJaw.getToothList().get(i).body.contains(e.getPoint())){
                     System.out.println(_downJaw.getToothList().get(i).getSide() + " " + _downJaw.getToothList().get(i).get_type());
                 }
-
-
             }
-
-
         }
     }
 

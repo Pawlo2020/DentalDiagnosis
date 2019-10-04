@@ -1,14 +1,9 @@
 package Presentation;
 
 import DentalComponent.DentalDiagnoser;
-import DentalComponent.DiagnoserView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.AbstractButton;
 
 public class ContentPanel extends JPanel {
 
@@ -45,12 +40,28 @@ public class ContentPanel extends JPanel {
 
         add(panelsSwitcher);
 
-        switchPanel(1);
-
+        JPanel midPanel = new JPanel();
+        midPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         DentalDiagnoser diag = new DentalDiagnoser();
-        diag.setPreferredSize(new Dimension(960,600));
-        add(diag);
+        diag.setPreferredSize(new Dimension(350,600));
+        midPanel.add(diag);
+
+        JPanel sep = new JPanel(new FlowLayout());
+        sep.setPreferredSize(new Dimension(125,400));
+        midPanel.add(sep);
+
+        JPanel tPanel = new JPanel(new FlowLayout());
+        tPanel.setBackground(Color.GREEN);
+        tPanel.setPreferredSize(new Dimension(300,400));
+
+        JLabel hi = new JLabel("Diagnostyka Zęba");
+        tPanel.add(hi);
+        midPanel.add(tPanel);
+
+        add(midPanel);
+
+
 
 
 
