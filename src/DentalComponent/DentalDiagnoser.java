@@ -1,8 +1,11 @@
 package DentalComponent;
 
+import com.sun.corba.se.spi.ior.Identifiable;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Parser;
 
 import javax.imageio.ImageIO;
+import java.awt.geom.Rectangle2D;
+import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -17,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.List;
 
 
 public class DentalDiagnoser extends JComponent implements MouseListener {
@@ -35,8 +39,22 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
     private Image finalToothThreeState1;
     private Image finalToothThreeState11;
 
+    private Tooth currentTooth;
+    private List<CanvasButton> buttonsList;
+
     public DentalDiagnoser(){
 
+        buttonsList = new ArrayList<>();
+        CanvasButton but1 = new CanvasButton(450,500,"Extract button");
+        but1.setBehavior(() -> {
+            currentTooth.set_isExtracted();
+            System.out.println("EXTRACT");
+            repaint();
+        });
+
+
+        buttonsList.add(but1);
+        buttonsList.add(new CanvasButton(550,500,"Mark as infected"));
         _downJaw = new Jaw();
         _upperJaw = new Jaw();
 
@@ -44,12 +62,7 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
         generateCoordinates();
 
-
-
-        //generateJaws();
-
         try {
-
             finalUpperJaw = ImageIO.read(new File("D:/Projekty/Edukacja/DentalDiagnosis/out/production/DentalDiagnosis/images/upperJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
             finalDownJaw = ImageIO.read(new File("D:/Projekty/Edukacja/DentalDiagnosis/out/production/DentalDiagnosis/images/downJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
 
@@ -64,10 +77,6 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         } catch (IOException e) {
             System.out.println("ERROR");
         }
-
-
-
-
     }
 
     private void generateCoordinates() {
@@ -122,6 +131,9 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         g2.drawImage(finalDownJaw,50,320,null);
 
         for(int i = 0; i<_downJaw.getToothList().size() ;i++) {
+            if(_downJaw.getToothList().get(i).isExtracted()==true){
+                continue;
+            }
             if (_downJaw.getToothList().get(i).get_type().equals("jedynka") || _downJaw.getToothList().get(i).get_type().equals("dwójka")) {
                 g2.drawImage(finalToothThreeState1, (int) _downJaw.getToothList().get(i).body.getX(), (int) _downJaw.getToothList().get(i).body.getY(), null);
             } else if (_downJaw.getToothList().get(i).get_type().equals("trójka")) {
@@ -135,9 +147,11 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             } else if (_downJaw.getToothList().get(i).get_type().equals("szóstka") || _downJaw.getToothList().get(i).get_type().equals("siódemka") || _downJaw.getToothList().get(i).get_type().equals("ósemka")) {
                 g2.drawImage(finalTooth, (int) _downJaw.getToothList().get(i).body.getX(), (int) _downJaw.getToothList().get(i).body.getY(), null);
             }
-
         }
             for(int i = 0; i<_upperJaw.getToothList().size() ;i++){
+                if(_upperJaw.getToothList().get(i).isExtracted()==true){
+                    continue;
+                }
                 if (_upperJaw.getToothList().get(i).get_type().equals("jedynka") || _upperJaw.getToothList().get(i).get_type().equals("dwójka")) {
                     g2.drawImage(finalToothThreeState11, (int) _upperJaw.getToothList().get(i).body.getX(), (int) _upperJaw.getToothList().get(i).body.getY(), null);
                 } else if (_upperJaw.getToothList().get(i).get_type().equals("trójka")) {
@@ -152,12 +166,38 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
                     g2.drawImage(finalTooth, (int) _upperJaw.getToothList().get(i).body.getX(), (int) _upperJaw.getToothList().get(i).body.getY(), null);
                 }
         }
-    }
 
+        Rectangle2D rect = new Rectangle2D.Double(400,50,300,500);
+            g2.draw(rect);
+            g2.setColor(Color.cyan);
+            g2.fill(rect);
+            g2.setColor(Color.DARK_GRAY);
+            for(int i=0;i<buttonsList.size();i++){
+                g2.setColor(Color.orange);
+                g2.fill(buttonsList.get(i).getButShape());
+                g2.setColor(Color.black);
+                g2.draw(buttonsList.get(i).getButShape());
+                g2.setColor(Color.black);
+                g2.drawString(buttonsList.get(i).get_text(),(int)buttonsList.get(i).getButShape().getBounds2D().getX()+10,(int)buttonsList.get(i).getButShape().getBounds2D().getY()+20);
 
+            }
+            if(currentTooth != null) {
+                g2.drawString(currentTooth.getSide() + " " + currentTooth.get_type(), 450, 80);
 
-    public void cure(){
+                if(currentTooth.isSick()==false){
+                    g2.drawString("Status: not infected",450,150);
+                }else{
+                    g2.drawString("Status: infected",450,150);
+                }
 
+                if(currentTooth.isExtracted()){
+                    g2.drawString("Extraction status: true",450,200);
+
+                }else{
+                    g2.drawString("Extraction status: false",450,200);
+                }
+
+            }
     }
 
     public void extractTooth(int t, int jaw){
@@ -168,19 +208,43 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         }
     }
 
+    private List<IDentalable> listeners = new ArrayList<IDentalable>();
+
+    public void addListener(IDentalable toAdd) {
+        listeners.add(toAdd);
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        for(int a=0;a<buttonsList.size();a++){
+            if(buttonsList.get(a).getButShape().contains(e.getPoint())){
+                System.out.println("SYSTEM");
+                buttonsList.get(a).Behavior();
+
+
+            }
+
+
+        }
+
+
+
         if(e.getY()<310){
             for(int i=0; i<_upperJaw.getToothList().size();i++){
                 if(_upperJaw.getToothList().get(i).body.contains(e.getPoint())){
                     System.out.println(_upperJaw.getToothList().get(i).getSide() + " " + _upperJaw.getToothList().get(i).get_type());
+                    currentTooth = _upperJaw.getToothList().get(i);
+                    this.repaint();
+
                 }
             }
         }else{
             for(int i=0; i<_downJaw.getToothList().size();i++){
                 if(_downJaw.getToothList().get(i).body.contains(e.getPoint())){
                     System.out.println(_downJaw.getToothList().get(i).getSide() + " " + _downJaw.getToothList().get(i).get_type());
+                    currentTooth = _downJaw.getToothList().get(i);
+                    this.repaint();
+
                 }
             }
         }
@@ -205,4 +269,6 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+
 }

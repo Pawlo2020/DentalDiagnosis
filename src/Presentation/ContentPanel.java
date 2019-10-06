@@ -1,6 +1,7 @@
 package Presentation;
 
 import DentalComponent.DentalDiagnoser;
+import DentalComponent.Tooth;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,8 @@ public class ContentPanel extends JPanel {
     JButton but1;
     JButton but2;
     JButton but3;
+
+    JLabel hi;
 
 
     public ContentPanel(){
@@ -44,7 +47,8 @@ public class ContentPanel extends JPanel {
         midPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         DentalDiagnoser diag = new DentalDiagnoser();
-        diag.setPreferredSize(new Dimension(350,600));
+        diag.setPreferredSize(new Dimension(750,600));
+        //diag.addListener(this);
         midPanel.add(diag);
 
         JPanel sep = new JPanel(new FlowLayout());
@@ -55,9 +59,9 @@ public class ContentPanel extends JPanel {
         tPanel.setBackground(Color.GREEN);
         tPanel.setPreferredSize(new Dimension(300,400));
 
-        JLabel hi = new JLabel("Diagnostyka Zęba");
-        tPanel.add(hi);
-        midPanel.add(tPanel);
+        hi = new JLabel("Diagnostyka Zęba");
+        //tPanel.add(hi);
+        //midPanel.add(tPanel);
 
         add(midPanel);
 
@@ -73,6 +77,7 @@ public class ContentPanel extends JPanel {
 
 
     }
+
 
 
 }

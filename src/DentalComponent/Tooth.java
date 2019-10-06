@@ -78,7 +78,7 @@ public class Tooth {
 
 
     public String getSide(){
-        if(_side==0){
+        if(_side==1){
             return "Lewa";
         }else{
             return "Prawa";
@@ -90,7 +90,7 @@ public class Tooth {
     }
 
     public void set_isExtracted(){
-        _isExtracted = true;
+        _isExtracted = !isExtracted();
 
     }
 
