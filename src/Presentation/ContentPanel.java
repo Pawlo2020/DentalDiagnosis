@@ -7,14 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContentPanel extends JPanel {
 
-    public DentalDiagnoser getDiag() {
-        return diag;
+    public List<DentalDiagnoser> getDiag() {
+        return diagnosersList;
     }
 
-    DentalDiagnoser diag;
+    List<DentalDiagnoser> diagnosersList;
 
     public ContentPanel(){
         super();
@@ -22,6 +24,16 @@ public class ContentPanel extends JPanel {
         BoxLayout contentLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(contentLayout);
         setBackground(new Color(255, 255, 255));
+
+        diagnosersList = new ArrayList<>();
+
+        for(int i=0;i<3;i++){
+            DentalDiagnoser diag = new DentalDiagnoser();
+            diag.setPreferredSize(new Dimension(750,600));
+            diagnosersList.add(diag);
+        }
+
+
 
         //Panels controller
         JPanel panelsSwitcher = new JPanel();
@@ -47,9 +59,8 @@ public class ContentPanel extends JPanel {
         JPanel midPanel = new JPanel();
         midPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        diag = new DentalDiagnoser();
-        diag.setPreferredSize(new Dimension(750,600));
-        midPanel.add(diag);
+
+        midPanel.add(diagnosersList.get(0));
 
         JPanel sep = new JPanel(new FlowLayout());
         sep.setPreferredSize(new Dimension(125,400));
@@ -64,31 +75,47 @@ public class ContentPanel extends JPanel {
         but1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                diag.setPatient(0);
+                midPanel.removeAll();
+                midPanel.add(diagnosersList.get(0));
                 but1.setBackground(Color.orange);
                 but2.setBackground(new Color(55, 66, 250));
                 but3.setBackground(new Color(55, 66, 250));
+
+                midPanel.revalidate();
+                midPanel.repaint();
             }
         });
 
         but2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                diag.setPatient(1);
+                midPanel.removeAll();
+                midPanel.add(diagnosersList.get(1));
                 but2.setBackground(Color.orange);
                 but1.setBackground(new Color(55, 66, 250));
                 but3.setBackground(new Color(55, 66, 250));
+
+                midPanel.revalidate();
+                midPanel.repaint();
             }
         });
 
         but3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                diag.setPatient(2);
+                midPanel.removeAll();
+                midPanel.add(diagnosersList.get(2));
                 but3.setBackground(Color.orange);
                 but1.setBackground(new Color(55, 66, 250));
                 but2.setBackground(new Color(55, 66, 250));
+
+                midPanel.revalidate();
+                midPanel.repaint();
             }
         });
+
+        for (int i = 0; i<diagnosersList.size(); i++){
+            diagnosersList.get(i).loadState(i);
+        }
     }
 }

@@ -15,7 +15,11 @@ public class MainWindow extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 setEnabled(false);
-                contentPanel.getDiag().saveState();
+                for (int i = 0; i<contentPanel.getDiag().size(); i++){
+                    contentPanel.getDiag().get(i).saveState(i);
+                    System.out.println("aa");
+                }
+
             }
         });
 

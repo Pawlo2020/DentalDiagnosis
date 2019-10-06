@@ -3,12 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patients.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/CanvasButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/CanvasButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/DentalDiagnoser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/DentalDiagnoser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/TextureManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/TextureManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/Tooth.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/Tooth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/ContentPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/MainWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/Presentation/MainWindow$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/CanvasButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/CanvasButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/Jaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/Jaw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Presentation/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/MainWindow.java" afterDir="false" />
     </list>
@@ -143,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570368866449</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Code refactor">
+      <created>1570370915011</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1570370915011</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +181,7 @@
     <MESSAGE value="Added tooth extraction" />
     <MESSAGE value="Texture Manager + Patient Management System" />
     <MESSAGE value="Patient Management System Upgrade to 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patient Management System Upgrade to 2.0" />
+    <MESSAGE value="Code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code refactor" />
   </component>
 </project>

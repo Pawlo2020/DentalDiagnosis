@@ -22,6 +22,10 @@ public class CanvasButton extends Rectangle2D.Double {
         return _text;
     }
 
+    public void set_text(String _text) {
+        this._text = _text;
+    }
+
     private String _text;
 
     CanvasButton(int x, int y, String text){

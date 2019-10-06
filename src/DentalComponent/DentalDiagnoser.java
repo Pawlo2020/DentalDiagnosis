@@ -3,7 +3,6 @@ package DentalComponent;
 import javax.imageio.ImageIO;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
-import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeSupport;
@@ -14,9 +13,12 @@ import java.util.List;
 
 public class DentalDiagnoser extends JComponent implements MouseListener {
     private PropertyChangeSupport propertyChange = new PropertyChangeSupport(this);
+//LEGACY CONFIRMED
+//    List<Patient> _patients;
+//    int _selectedPatient;
 
-    List<Patient> _patients;
-    int _selectedPatient;
+    Patient curPatient;
+    int curID;
 
     private Jaw _upperJaw;
     private Jaw _downJaw;
@@ -28,21 +30,21 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
     private TextureManager manager;
 
-    public void setPatient(int param){
-        _selectedPatient = param;
+    public void setPatient(Patient pat){
+        curPatient = pat;
         generateCoordinates();
         repaint();
     }
 
-    public void saveState(){
+    public void saveState(int id){
         try
         {
             //Saving of object in a file
-            FileOutputStream file = new FileOutputStream("Patients.ser");
+            FileOutputStream file = new FileOutputStream("Patient" + id + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(_patients);
+            out.writeObject(curPatient);
 
             out.close();
             file.close();
@@ -51,19 +53,20 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         catch(IOException ex) {}
     }
 
-    public void loadState(){
+    public void loadState(int id){
         try
         {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream("Patients.ser");
+            FileInputStream file = new FileInputStream("Patient" + id + ".ser");
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            _patients = (List<Patient>)in.readObject();
+            curPatient = (Patient) in.readObject();
 
             in.close();
             file.close();
 
+            curID = id;
             repaint();
         }
 
@@ -76,18 +79,14 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             manager = new TextureManager();
         }catch(Exception e){}
 
-        _patients = new ArrayList<>();
-
-        for(int i = 0; i<3; i++){
-            _patients.add(new Patient());
-        }
-
-        _selectedPatient = 0;
-
-        loadState();
+        curPatient = new Patient();
+//legacy
+//        for(int i = 0; i<3; i++){
+//            _patients.add(new Patient());
+//        }
 
         buttonsList = new ArrayList<>();
-        CanvasButton but1 = new CanvasButton(450,500,"Extract button");
+        CanvasButton but1 = new CanvasButton(450,500,"Extract tooth");
         but1.setBehavior(() -> {
             currentTooth.set_isExtracted();
 
@@ -121,42 +120,42 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
     }
 
     private void generateCoordinates() {
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(0).setCoords(48,320);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(1).setCoords(48,360);
-        _patients.get(_selectedPatient). _downJaw.getToothList().get(2).setCoords(52,400);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(3).setCoords(60,440);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(4).setCoords(70,480);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(5).setCoords(90,515);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(6).setCoords(115,540);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(7).setCoords(155,550);
+        curPatient._downJaw.getToothList().get(0).setCoords(48,320);
+        curPatient._downJaw.getToothList().get(1).setCoords(48,360);
+        curPatient. _downJaw.getToothList().get(2).setCoords(52,400);
+        curPatient._downJaw.getToothList().get(3).setCoords(60,440);
+        curPatient._downJaw.getToothList().get(4).setCoords(70,480);
+        curPatient._downJaw.getToothList().get(5).setCoords(90,515);
+        curPatient._downJaw.getToothList().get(6).setCoords(115,540);
+        curPatient._downJaw.getToothList().get(7).setCoords(155,550);
 
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(8).setCoords(310,320);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(9).setCoords(310,360);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(10).setCoords(308,400);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(11).setCoords(299,440);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(12).setCoords(290,480);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(13).setCoords(270,515);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(14).setCoords(247,540);
-        _patients.get(_selectedPatient)._downJaw.getToothList().get(15).setCoords(205,550);
+        curPatient._downJaw.getToothList().get(8).setCoords(310,320);
+        curPatient._downJaw.getToothList().get(9).setCoords(310,360);
+        curPatient._downJaw.getToothList().get(10).setCoords(308,400);
+        curPatient._downJaw.getToothList().get(11).setCoords(299,440);
+        curPatient._downJaw.getToothList().get(12).setCoords(290,480);
+        curPatient._downJaw.getToothList().get(13).setCoords(270,515);
+        curPatient._downJaw.getToothList().get(14).setCoords(247,540);
+        curPatient._downJaw.getToothList().get(15).setCoords(205,550);
 
 
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(0).setCoords(48,260);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(1).setCoords(48,220);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(2).setCoords(52,175);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(3).setCoords(60,130);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(4).setCoords(70,88);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(5).setCoords(90,50);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(6).setCoords(115,28);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(7).setCoords(155,20);
+        curPatient._upperJaw.getToothList().get(0).setCoords(48,260);
+        curPatient._upperJaw.getToothList().get(1).setCoords(48,220);
+        curPatient._upperJaw.getToothList().get(2).setCoords(52,175);
+        curPatient._upperJaw.getToothList().get(3).setCoords(60,130);
+        curPatient._upperJaw.getToothList().get(4).setCoords(70,88);
+        curPatient._upperJaw.getToothList().get(5).setCoords(90,50);
+        curPatient._upperJaw.getToothList().get(6).setCoords(115,28);
+        curPatient._upperJaw.getToothList().get(7).setCoords(155,20);
 
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(8).setCoords(310,260);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(9).setCoords(310,220);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(10).setCoords(308,175);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(11).setCoords(299,130);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(12).setCoords(290,88);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(13).setCoords(270,50);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(14).setCoords(247,28);
-        _patients.get(_selectedPatient)._upperJaw.getToothList().get(15).setCoords(205,20);
+        curPatient._upperJaw.getToothList().get(8).setCoords(310,260);
+        curPatient._upperJaw.getToothList().get(9).setCoords(310,220);
+        curPatient._upperJaw.getToothList().get(10).setCoords(308,175);
+        curPatient._upperJaw.getToothList().get(11).setCoords(299,130);
+        curPatient._upperJaw.getToothList().get(12).setCoords(290,88);
+        curPatient._upperJaw.getToothList().get(13).setCoords(270,50);
+        curPatient._upperJaw.getToothList().get(14).setCoords(247,28);
+        curPatient._upperJaw.getToothList().get(15).setCoords(205,20);
     }
 
     @Override
@@ -171,89 +170,88 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
         g2.drawImage(finalDownJaw,50,320,null);
 
-        for(int i = 0; i<_patients.get(_selectedPatient)._downJaw.getToothList().size() ;i++) {
-            if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isExtracted() == true) {
+        for(int i = 0; i<curPatient._downJaw.getToothList().size() ;i++) {
+            if (curPatient._downJaw.getToothList().get(i).isExtracted() == true) {
                 continue;
             }
-            if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("jedynka") || _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("dwójka")) {
-                if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isSick()) {
-                    g2.drawImage(manager.getToothsImages().get("tThreeState1INF.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+            if (curPatient._downJaw.getToothList().get(i).get_type().equals("jedynka") || curPatient._downJaw.getToothList().get(i).get_type().equals("dwójka")) {
+                if (curPatient._downJaw.getToothList().get(i).isSick()) {
+                    g2.drawImage(manager.getToothsImages().get("tThreeState1INF.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
                 } else {
-                    g2.drawImage(manager.getToothsImages().get("tThreeState1.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                    g2.drawImage(manager.getToothsImages().get("tThreeState1.png"), (int)curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
 
                 }
-            } else if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("trójka")) {
-                if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).getSide().equals("Lewa")) {
-                    if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isSick()) {
-                        g2.drawImage(manager.getToothsImages().get("tThreeState2LEFTINF.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+            } else if (curPatient._downJaw.getToothList().get(i).get_type().equals("trójka")) {
+                if (curPatient._downJaw.getToothList().get(i).getSide().equals("Lewa")) {
+                    if (curPatient._downJaw.getToothList().get(i).isSick()) {
+                        g2.drawImage(manager.getToothsImages().get("tThreeState2INF.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
                     } else {
-                        g2.drawImage(manager.getToothsImages().get("tThreeState2LEFT.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                        g2.drawImage(manager.getToothsImages().get("tThreeState2.png"), (int)curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
                     }
-                } else if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).getSide().equals("Prawa")) {
-                    if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isSick()) {
-                        g2.drawImage(manager.getToothsImages().get("tThreeState2INF.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                } else if (curPatient._downJaw.getToothList().get(i).getSide().equals("Prawa")) {
+                    if (curPatient._downJaw.getToothList().get(i).isSick()) {
+                        g2.drawImage(manager.getToothsImages().get("tThreeState2LEFTINF.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
                     } else {
-                        g2.drawImage(manager.getToothsImages().get("tThreeState2.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                        g2.drawImage(manager.getToothsImages().get("tThreeState2LEFT.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
 
                     }
                 }
-            } else if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("czwórka") || _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("piątka")) {
-                if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isSick()) {
-                    g2.drawImage(manager.getToothsImages().get("tTwoINF.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+            } else if (curPatient._downJaw.getToothList().get(i).get_type().equals("czwórka") || curPatient._downJaw.getToothList().get(i).get_type().equals("piątka")) {
+                if (curPatient._downJaw.getToothList().get(i).isSick()) {
+                    g2.drawImage(manager.getToothsImages().get("tTwoINF.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
                 } else {
-                    g2.drawImage(manager.getToothsImages().get("tTwo.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                    g2.drawImage(manager.getToothsImages().get("tTwo.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
 
                 }
-            } else if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("szóstka") || _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("siódemka") || _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type().equals("ósemka")) {
-                if (_patients.get(_selectedPatient)._downJaw.getToothList().get(i).isSick()) {
-                    g2.drawImage(manager.getToothsImages().get("tOneINF.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+            } else if (curPatient._downJaw.getToothList().get(i).get_type().equals("szóstka") || curPatient._downJaw.getToothList().get(i).get_type().equals("siódemka") || curPatient._downJaw.getToothList().get(i).get_type().equals("ósemka")) {
+                if (curPatient._downJaw.getToothList().get(i).isSick()) {
+                    g2.drawImage(manager.getToothsImages().get("tOneINF.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
 
                 } else {
-                    g2.drawImage(manager.getToothsImages().get("tOne.png"), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.getY(), null);
+                    g2.drawImage(manager.getToothsImages().get("tOne.png"), (int) curPatient._downJaw.getToothList().get(i).body.getX(), (int) curPatient._downJaw.getToothList().get(i).body.getY(), null);
 
                 }
             }
         }
             for(int i = 0; i<_upperJaw.getToothList().size() ;i++){
-                if(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isExtracted()==true){
+                if(curPatient._upperJaw.getToothList().get(i).isExtracted()==true){
                     continue;
                 }
-                if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("jedynka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("dwójka")) {
-                    if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
-                        g2.drawImage(manager.getToothsImages().get("tThreeState11INF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                if (curPatient._upperJaw.getToothList().get(i).get_type().equals("jedynka") || curPatient._upperJaw.getToothList().get(i).get_type().equals("dwójka")) {
+                    if (curPatient._upperJaw.getToothList().get(i).isSick()) {
+                        g2.drawImage(manager.getToothsImages().get("tThreeState11INF.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                     }else{
-                        g2.drawImage(manager.getToothsImages().get("tThreeState11.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                        g2.drawImage(manager.getToothsImages().get("tThreeState11.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
 
                     }
-                } else if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("trójka")) {
-                    if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).getSide().equals("Lewa")) {
-                        if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
-                            g2.drawImage(manager.getToothsImages().get("tThreeState22LEFTINF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                } else if (curPatient._upperJaw.getToothList().get(i).get_type().equals("trójka")) {
+                    if (curPatient._upperJaw.getToothList().get(i).getSide().equals("Lewa")) {
+                        if (curPatient._upperJaw.getToothList().get(i).isSick()) {
+                            g2.drawImage(manager.getToothsImages().get("tThreeState22INF.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                         }else{
-                            g2.drawImage(manager.getToothsImages().get("tThreeState22LEFT.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                            g2.drawImage(manager.getToothsImages().get("tThreeState22.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
 
                         }
-                    } else if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).getSide().equals("Prawa")) {
-                        if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
-                            g2.drawImage(manager.getToothsImages().get("tThreeState22INF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                    } else if (curPatient._upperJaw.getToothList().get(i).getSide().equals("Prawa")) {
+                        if (curPatient._upperJaw.getToothList().get(i).isSick()) {
+                            g2.drawImage(manager.getToothsImages().get("tThreeState22LEFTINF.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                         }else{
-                            g2.drawImage(manager.getToothsImages().get("tThreeState22.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                            g2.drawImage(manager.getToothsImages().get("tThreeState22LEFT.png"), (int)curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
 
                         }
                     }
-                } else if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("czwórka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("piątka")) {
-                    if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
-                        g2.drawImage(manager.getToothsImages().get("tTwoINF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                } else if (curPatient._upperJaw.getToothList().get(i).get_type().equals("czwórka") || curPatient._upperJaw.getToothList().get(i).get_type().equals("piątka")) {
+                    if (curPatient._upperJaw.getToothList().get(i).isSick()) {
+                        g2.drawImage(manager.getToothsImages().get("tTwoINF.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                     }else{
-                        g2.drawImage(manager.getToothsImages().get("tTwo.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                        g2.drawImage(manager.getToothsImages().get("tTwo.png"), (int)curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
 
                     }
-                } else if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("szóstka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("siódemka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("ósemka")) {
-                    if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
-                        g2.drawImage(manager.getToothsImages().get("tOneINF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
+                } else if (curPatient._upperJaw.getToothList().get(i).get_type().equals("szóstka") || curPatient._upperJaw.getToothList().get(i).get_type().equals("siódemka") || curPatient._upperJaw.getToothList().get(i).get_type().equals("ósemka")) {
+                    if (curPatient._upperJaw.getToothList().get(i).isSick()) {
+                        g2.drawImage(manager.getToothsImages().get("tOneINF.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                     }else{
-                        g2.drawImage(manager.getToothsImages().get("tOne.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
-
+                        g2.drawImage(manager.getToothsImages().get("tOne.png"), (int) curPatient._upperJaw.getToothList().get(i).body.getX(), (int) curPatient._upperJaw.getToothList().get(i).body.getY(), null);
                     }
                 }
         }
@@ -291,28 +289,44 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             }
     }
 
+    public void updateButtons(Tooth currentTooth){
+        if(currentTooth.isExtracted()){
+            buttonsList.get(0).set_text("Insert tooth");
+        }else{
+            buttonsList.get(0).set_text("Extract tooth");
+        }
+
+        if(currentTooth.isSick()){
+            buttonsList.get(1).set_text("Mark as cured");
+        }else{
+            buttonsList.get(1).set_text("Mark as infected");
+        }
+        repaint();
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         for(int a=0;a<buttonsList.size();a++){
             if(buttonsList.get(a).getButShape().contains(e.getPoint())){
-                System.out.println("SYSTEM");
+
                 buttonsList.get(a).Behavior();
+                updateButtons(currentTooth);
             }
         }
 
         if(e.getY()<310){
             for(int i=0; i<_upperJaw.getToothList().size();i++){
-                if(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.contains(e.getPoint())){
-                    System.out.println(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type());
-                    currentTooth = _patients.get(_selectedPatient)._upperJaw.getToothList().get(i);
+                if(curPatient._upperJaw.getToothList().get(i).body.contains(e.getPoint())){
+                    currentTooth = curPatient._upperJaw.getToothList().get(i);
+                    updateButtons(currentTooth);
                     this.repaint();
                 }
             }
         }else{
             for(int i=0; i<_downJaw.getToothList().size();i++){
-                if(_patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.contains(e.getPoint())){
-                    System.out.println(_patients.get(_selectedPatient)._downJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type());
-                    currentTooth = _patients.get(_selectedPatient)._downJaw.getToothList().get(i);
+                if(curPatient._downJaw.getToothList().get(i).body.contains(e.getPoint())){
+                    currentTooth = curPatient._downJaw.getToothList().get(i);
+                    updateButtons(currentTooth);
                     this.repaint();
                 }
             }
