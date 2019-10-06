@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DentalComponent/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570361978168</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Texture Manager + Patient Management System">
+      <created>1570368173849</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1570368173849</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +154,7 @@
     <MESSAGE value="Detect the tooth" />
     <MESSAGE value="IDentalable Interface" />
     <MESSAGE value="Added tooth extraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tooth extraction" />
+    <MESSAGE value="Texture Manager + Patient Management System" />
+    <option name="LAST_COMMIT_MESSAGE" value="Texture Manager + Patient Management System" />
   </component>
 </project>

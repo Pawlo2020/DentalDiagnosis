@@ -5,6 +5,8 @@ import DentalComponent.Tooth;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ContentPanel extends JPanel {
 
@@ -29,7 +31,7 @@ public class ContentPanel extends JPanel {
         JButton but2 = new JButton("Pacjent 2");
         JButton but3 = new JButton("Pacjent 3");
 
-        but1.setBackground(new Color(55, 66, 250));
+        but1.setBackground(Color.orange);
         but2.setBackground(new Color(55, 66, 250));
         but3.setBackground(new Color(55, 66, 250));
 
@@ -64,6 +66,36 @@ public class ContentPanel extends JPanel {
         //midPanel.add(tPanel);
 
         add(midPanel);
+
+        but1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                diag.setPatient(0);
+                but1.setBackground(Color.orange);
+                but2.setBackground(new Color(55, 66, 250));
+                but3.setBackground(new Color(55, 66, 250));
+            }
+        });
+
+        but2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                diag.setPatient(1);
+                but2.setBackground(Color.orange);
+                but1.setBackground(new Color(55, 66, 250));
+                but3.setBackground(new Color(55, 66, 250));
+            }
+        });
+
+        but3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                diag.setPatient(2);
+                but3.setBackground(Color.orange);
+                but1.setBackground(new Color(55, 66, 250));
+                but2.setBackground(new Color(55, 66, 250));
+            }
+        });
 
 
 

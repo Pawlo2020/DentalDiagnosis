@@ -40,6 +40,14 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
     private TextureManager manager;
 
+    public void setPatient(int param){
+        _selectedPatient = param;
+
+        generateCoordinates();
+
+        repaint();
+    }
+
     public DentalDiagnoser(){
         try{
             manager = new TextureManager();
@@ -61,14 +69,14 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             currentTooth.set_isExtracted();
 
             if(!currentTooth.isExtracted()){
-                currentTooth.set_isSick();
+                currentTooth.set_isSick(true);
             }
             repaint();
         });
 
         CanvasButton but2 = new CanvasButton(550,500,"Mark as infected");
         but2.setBehavior(() -> {
-            currentTooth.set_isSick();
+            currentTooth.set_isSick(false);
             repaint();
         });
 
@@ -219,7 +227,7 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
                     }
                 } else if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("szóstka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("siódemka") || _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type().equals("ósemka")) {
-                    if (_upperJaw.getToothList().get(i).isSick()) {
+                    if (_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).isSick()) {
                         g2.drawImage(manager.getToothsImages().get("tOneINF.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
                     }else{
                         g2.drawImage(manager.getToothsImages().get("tOne.png"), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getX(), (int) _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.getY(), null);
@@ -292,18 +300,18 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
         if(e.getY()<310){
             for(int i=0; i<_upperJaw.getToothList().size();i++){
-                if(_upperJaw.getToothList().get(i).body.contains(e.getPoint())){
-                    System.out.println(_upperJaw.getToothList().get(i).getSide() + " " + _upperJaw.getToothList().get(i).get_type());
-                    currentTooth = _upperJaw.getToothList().get(i);
+                if(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).body.contains(e.getPoint())){
+                    System.out.println(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type());
+                    currentTooth = _patients.get(_selectedPatient)._upperJaw.getToothList().get(i);
                     this.repaint();
 
                 }
             }
         }else{
             for(int i=0; i<_downJaw.getToothList().size();i++){
-                if(_downJaw.getToothList().get(i).body.contains(e.getPoint())){
-                    System.out.println(_downJaw.getToothList().get(i).getSide() + " " + _downJaw.getToothList().get(i).get_type());
-                    currentTooth = _downJaw.getToothList().get(i);
+                if(_patients.get(_selectedPatient)._downJaw.getToothList().get(i).body.contains(e.getPoint())){
+                    System.out.println(_patients.get(_selectedPatient)._downJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type());
+                    currentTooth = _patients.get(_selectedPatient)._downJaw.getToothList().get(i);
                     this.repaint();
 
                 }

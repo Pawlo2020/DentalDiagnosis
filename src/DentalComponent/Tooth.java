@@ -94,8 +94,12 @@ public class Tooth {
 
     }
 
-    public void set_isSick(){
-        _isSick = !_isSick;
+    public void set_isSick(boolean mode){
+        if(!mode) {
+            _isSick = !_isSick;
+        }else{
+            _isSick = false;
+        }
     }
 
     public boolean isSick() {
