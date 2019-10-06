@@ -1,34 +1,22 @@
 package DentalComponent;
 
-import com.sun.corba.se.spi.ior.Identifiable;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Parser;
-
 import javax.imageio.ImageIO;
 import java.awt.geom.Rectangle2D;
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeSupport;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
-
 
 public class DentalDiagnoser extends JComponent implements MouseListener {
     private PropertyChangeSupport propertyChange = new PropertyChangeSupport(this);
 
     List<Patient> _patients;
     int _selectedPatient;
-
 
     private Jaw _upperJaw;
     private Jaw _downJaw;
@@ -42,18 +30,51 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
 
     public void setPatient(int param){
         _selectedPatient = param;
-
         generateCoordinates();
-
         repaint();
+    }
+
+    public void saveState(){
+        try
+        {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream("Patients.ser");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // Method for serialization of object
+            out.writeObject(_patients);
+
+            out.close();
+            file.close();
+        }
+
+        catch(IOException ex) {}
+    }
+
+    public void loadState(){
+        try
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream("Patients.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            _patients = (List<Patient>)in.readObject();
+
+            in.close();
+            file.close();
+
+            repaint();
+        }
+
+        catch(IOException | ClassNotFoundException ex)
+        {}
     }
 
     public DentalDiagnoser(){
         try{
             manager = new TextureManager();
-        }catch(Exception e){
-
-        }
+        }catch(Exception e){}
 
         _patients = new ArrayList<>();
 
@@ -62,6 +83,8 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         }
 
         _selectedPatient = 0;
+
+        loadState();
 
         buttonsList = new ArrayList<>();
         CanvasButton but1 = new CanvasButton(450,500,"Extract button");
@@ -79,7 +102,6 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             currentTooth.set_isSick(false);
             repaint();
         });
-
 
         buttonsList.add(but1);
         buttonsList.add(but2);
@@ -269,34 +291,14 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
             }
     }
 
-    public void extractTooth(int t, int jaw){
-        if(jaw==0){
-            _downJaw.getToothList().get(t).set_isExtracted();
-        }else{
-            _upperJaw.getToothList().get(t).set_isExtracted();
-        }
-    }
-
-    private List<IDentalable> listeners = new ArrayList<IDentalable>();
-
-    public void addListener(IDentalable toAdd) {
-        listeners.add(toAdd);
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
         for(int a=0;a<buttonsList.size();a++){
             if(buttonsList.get(a).getButShape().contains(e.getPoint())){
                 System.out.println("SYSTEM");
                 buttonsList.get(a).Behavior();
-
-
             }
-
-
         }
-
-
 
         if(e.getY()<310){
             for(int i=0; i<_upperJaw.getToothList().size();i++){
@@ -304,7 +306,6 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
                     System.out.println(_patients.get(_selectedPatient)._upperJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._upperJaw.getToothList().get(i).get_type());
                     currentTooth = _patients.get(_selectedPatient)._upperJaw.getToothList().get(i);
                     this.repaint();
-
                 }
             }
         }else{
@@ -313,31 +314,20 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
                     System.out.println(_patients.get(_selectedPatient)._downJaw.getToothList().get(i).getSide() + " " + _patients.get(_selectedPatient)._downJaw.getToothList().get(i).get_type());
                     currentTooth = _patients.get(_selectedPatient)._downJaw.getToothList().get(i);
                     this.repaint();
-
                 }
             }
         }
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-
+    public void mouseExited(MouseEvent e) {}
 }

@@ -1,6 +1,8 @@
 package DentalComponent;
 
-public class Patient {
+import java.io.Serializable;
+
+public class Patient implements Serializable {
     public Jaw get_upperJaw() {
         return _upperJaw;
     }

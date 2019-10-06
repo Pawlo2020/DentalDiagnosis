@@ -24,12 +24,9 @@ public class CanvasButton extends Rectangle2D.Double {
 
     private String _text;
 
-
     CanvasButton(int x, int y, String text){
         _text = text;
         butShape = new Rectangle2D.Double(x,y,100,30);
-
-
     }
 
     public void setBehavior(IDentalable aaa){
@@ -39,8 +36,4 @@ public class CanvasButton extends Rectangle2D.Double {
     public void Behavior(){
         aaa.onToothSelected();
     }
-
-
-
-
 }

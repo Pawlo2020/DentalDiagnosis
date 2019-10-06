@@ -2,16 +2,15 @@ package DentalComponent;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 
-public class Tooth {
+public class Tooth implements Serializable {
 
     private boolean _isSick;
     private boolean _isExtracted;
     private int _side;
-
-
 
     Rectangle2D body;
 
@@ -20,10 +19,6 @@ public class Tooth {
     }
 
     private String _type;
-
-
-
-
 
     Tooth(int type, int side){
 
@@ -65,7 +60,6 @@ public class Tooth {
         }
     }
 
-
     public Rectangle2D getBody() {
         return body;
     }
@@ -73,9 +67,6 @@ public class Tooth {
     public void setCoords(double x, double y) {
         this.body.setRect(x,y,48,48);
     }
-
-
-
 
     public String getSide(){
         if(_side==1){

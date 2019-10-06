@@ -3,13 +3,21 @@ package Presentation;
 import Presentation.ContentPanel;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MainWindow extends JFrame {
-    JPanel contentPanel;
+    ContentPanel contentPanel;
     JPanel topPanel;
 
     public MainWindow(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                setEnabled(false);
+                contentPanel.getDiag().saveState();
+            }
+        });
 
         // Global size and bounds of the frame
         setBounds(250, 100, 800, 720);
@@ -41,7 +49,7 @@ public class MainWindow extends JFrame {
         add(topPanel);
         topPanel.add(titleLabel);
 
-        ContentPanel contentPanel = new ContentPanel();
+        contentPanel = new ContentPanel();
         add(contentPanel);
     }
 }

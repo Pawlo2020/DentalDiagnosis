@@ -16,18 +16,11 @@ public class TextureManager {
     public TextureManager() throws IOException {
         ToothsImages = new Hashtable<>();
 
-
         File directory = new File("D:/Projekty/Edukacja/DentalDiagnosis/out/production/DentalDiagnosis/images/teeth/");
 
         for(File aa:directory.listFiles()){
             System.out.println(aa.getAbsolutePath());
             ToothsImages.put(aa.getName(),ImageIO.read(aa).getScaledInstance(40,40,Image.SCALE_DEFAULT));
-
         }
-
-
     }
-
-
-
 }

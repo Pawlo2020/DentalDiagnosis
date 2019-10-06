@@ -1,8 +1,9 @@
 package DentalComponent;
 
+import java.io.Serializable;
 import java.util.Hashtable;
 
-public class Jaw {
+public class Jaw implements Serializable {
 
     private Hashtable<Integer, Tooth> toothList;
 

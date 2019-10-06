@@ -10,12 +10,11 @@ import java.awt.event.ActionListener;
 
 public class ContentPanel extends JPanel {
 
-    JButton but1;
-    JButton but2;
-    JButton but3;
+    public DentalDiagnoser getDiag() {
+        return diag;
+    }
 
-    JLabel hi;
-
+    DentalDiagnoser diag;
 
     public ContentPanel(){
         super();
@@ -48,9 +47,8 @@ public class ContentPanel extends JPanel {
         JPanel midPanel = new JPanel();
         midPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        DentalDiagnoser diag = new DentalDiagnoser();
+        diag = new DentalDiagnoser();
         diag.setPreferredSize(new Dimension(750,600));
-        //diag.addListener(this);
         midPanel.add(diag);
 
         JPanel sep = new JPanel(new FlowLayout());
@@ -60,10 +58,6 @@ public class ContentPanel extends JPanel {
         JPanel tPanel = new JPanel(new FlowLayout());
         tPanel.setBackground(Color.GREEN);
         tPanel.setPreferredSize(new Dimension(300,400));
-
-        hi = new JLabel("Diagnostyka Zęba");
-        //tPanel.add(hi);
-        //midPanel.add(tPanel);
 
         add(midPanel);
 
@@ -96,20 +90,5 @@ public class ContentPanel extends JPanel {
                 but2.setBackground(new Color(55, 66, 250));
             }
         });
-
-
-
-
-
     }
-
-    void switchPanel(int i){
-
-
-
-
-    }
-
-
-
 }
