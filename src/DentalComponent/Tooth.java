@@ -95,10 +95,7 @@ public class Tooth {
     }
 
     public void set_isSick(){
-        _isSick = true;
-    }
-    public void set_isCured(){
-        _isSick = false;
+        _isSick = !_isSick;
     }
 
     public boolean isSick() {

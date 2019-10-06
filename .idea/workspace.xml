@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DentalComponent/CanvasButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DentalComponent/IDentalable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DentalComponent/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DentalComponent/IDetantalable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/Tooth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ContentPanel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +33,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -119,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570220567657</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added tooth extraction">
+      <created>1570361978163</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1570361978168</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +147,7 @@
     <MESSAGE value="Drawing the tooths" />
     <MESSAGE value="Detect the tooth" />
     <MESSAGE value="IDentalable Interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="IDentalable Interface" />
+    <MESSAGE value="Added tooth extraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tooth extraction" />
   </component>
 </project>
