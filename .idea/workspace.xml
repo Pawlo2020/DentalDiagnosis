@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="" />
+    <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570375509745</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Stable 12.10.19">
+      <created>1570874123287</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1570874123287</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,6 +183,7 @@
     <MESSAGE value="Patient Management System Upgrade to 2.0" />
     <MESSAGE value="Code refactor" />
     <MESSAGE value="Component persistance" />
-    <option name="LAST_COMMIT_MESSAGE" value="Component persistance" />
+    <MESSAGE value="Stable 12.10.19" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stable 12.10.19" />
   </component>
 </project>
