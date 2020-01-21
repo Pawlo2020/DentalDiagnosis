@@ -112,8 +112,8 @@ public class DentalDiagnoser extends JComponent implements MouseListener {
         generateCoordinates();
 
         try {
-            finalUpperJaw = ImageIO.read(new File("D:/Projekty/Edukacja/DentalDiagnosis/out/production/DentalDiagnosis/images/upperJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
-            finalDownJaw = ImageIO.read(new File("D:/Projekty/Edukacja/DentalDiagnosis/out/production/DentalDiagnosis/images/downJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
+            finalUpperJaw = ImageIO.read(new File("D:\\OneDrive\\Studia\\Semestr 5\\Programowanie komponentowe\\DentalDiagnosis\\out\\production\\DentalDiagnosis\\images\\upperJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
+            finalDownJaw = ImageIO.read(new File("D:\\OneDrive\\Studia\\Semestr 5\\Programowanie komponentowe\\DentalDiagnosis\\out\\production\\DentalDiagnosis\\images\\downJaw.png")).getScaledInstance(300,270,Image.SCALE_DEFAULT);
         } catch (IOException e) {
             System.out.println("ERROR");
         }

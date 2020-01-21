@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="da262018-91be-4977-89a5-42b8561e60a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patient0.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Patient0.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/DentalDiagnoser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/DentalDiagnoser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/TextureManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DentalDiagnosis/DentalComponent/TextureManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/DentalDiagnoser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DentalComponent/TextureManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
